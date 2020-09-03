@@ -143,3 +143,4 @@ public class GameModel {
         return new ArrayList<>(dictionary.getCharacterSet());
     }
 }
+

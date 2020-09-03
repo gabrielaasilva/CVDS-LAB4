@@ -84,7 +84,7 @@ public class GameScoreTest {
 		g = new PowerBonusScore();	
 		try {
 			calcula = g.calculateScore(2, 1);
-			assertEquals(2, calcula);
+			assertEquals(22, calcula);
 		} catch (HangmanException e) {
 			e.printStackTrace();
 		}

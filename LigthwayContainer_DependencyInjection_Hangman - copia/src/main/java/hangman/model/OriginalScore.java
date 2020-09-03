@@ -8,8 +8,17 @@ public class OriginalScore implements GameScore{
 	 *@param incorrectCount
 	 *@throws HangmanException
 	 */
+	private int score;
+	public OriginalScore() {
+		score = 100;
+	}
 	public int calculateScore(int correctCount,int incorrectCount) throws HangmanException {
-
-		return 0;
+		if (score > 0) {
+			if(correctCount<0 || incorrectCount<0) {throw new HangmanException(HangmanException.INVALID);}
+			else {
+				score -= (incorrectCount*10);
+			}
+		}
+		return score;
 	}
 }
