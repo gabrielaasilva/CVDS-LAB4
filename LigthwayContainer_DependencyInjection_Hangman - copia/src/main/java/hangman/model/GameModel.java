@@ -22,9 +22,9 @@ public class GameModel {
     private int incorrectCount;
     private int correctCount;
     private LocalDateTime dateTime;
-    private int gameScore;
+    //private int gameScore;
     private int[] lettersUsed;
-    
+    private GameScore gamescore;
     
     private HangmanDictionary dictionary;
     
@@ -34,14 +34,15 @@ public class GameModel {
     
     
    
-    public GameModel(HangmanDictionary dictionary){
+    public GameModel(HangmanDictionary dictionary,GameScore gamescore){
         //this.dictionary = new EnglishDictionaryDataSource();
         this.dictionary=dictionary;
         randomWord = selectRandomWord();
         randomWordCharArray = randomWord.toCharArray();
         incorrectCount = 0;
         correctCount = 0;
-        gameScore = 100;
+        this.gamescore = gamescore;
+        //gameScore = 100;
         
     }
     
@@ -52,7 +53,7 @@ public class GameModel {
         randomWordCharArray = randomWord.toCharArray();
         incorrectCount = 0;
         correctCount = 0;
-        gameScore = 100;
+        //gameScore = 100;
     }
 
     //setDateTime
@@ -74,7 +75,7 @@ public class GameModel {
         }
         if(positions.size() == 0){
             incorrectCount++;
-            gameScore -= 10;
+            //gameScore -= 10;
         } else {
             correctCount += positions.size();
         }
@@ -91,14 +92,14 @@ public class GameModel {
 
     //setScore
     //purpose: sets score value to points
-    public void setScore(int score) {
-        this.gameScore = score;
+    public void setScore(GameScore gamescore) {
+        this.gamescore = gamescore;
     }
     
     //getScore
     //purpose: returns current score value
-    public int getScore() {
-        return gameScore;
+    public GameScore getScore() {
+        return gamescore;
     }
 
     //name: selectRandomWord()
@@ -124,13 +125,19 @@ public class GameModel {
     //method: getGameScore
     //purpose: return current score
     public int getGameScore() {
-        return gameScore;
+    	int score = 0;
+    	try {
+    		score = gamescore.calculateScore(correctCount, incorrectCount);
+    	}catch(HangmanException e) {
+    		System.out.println(e.getMessage());
+    	}
+        return score;
     }
 
     //method: setGameScore
     //purpose: set current game score
-    public void setGameScore(int gameScore) {
-        this.gameScore = gameScore;
+    public void setGameScore(GameScore gamescore) {
+        this.gamescore = gamescore;
     }
     
     //method: getWordLength

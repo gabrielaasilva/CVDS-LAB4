@@ -25,6 +25,7 @@ import hangman.model.dictionary.EnglishDictionaryDataSource;
 import hangman.model.dictionary.FrenchDictionaryDataSource;
 import hangman.view.HangmanNoviolentoPanel;
 import hangman.view.HangmanPanel;
+import hangman.view.HangmanStickmanPanel;
 
 public class HangmanFactoryServices extends com.google.inject.AbstractModule {
 
@@ -35,13 +36,13 @@ public class HangmanFactoryServices extends com.google.inject.AbstractModule {
     	//bind(Language.class).to(French.class);
     	//bind(HangmanDictionary.class).to(FrenchDictionaryDataSource.class);
     	//bind(GameScore.class).to(OriginalScore.class);
-    	bind(GameScore.class).to(BonusScore.class);
-    	//bind(GameScore.class).to(PowerBonusScore.class);
+    	//bind(GameScore.class).to(BonusScore.class);
+    	bind(GameScore.class).to(PowerBonusScore.class);
     	//bind(Language.class).to(English.class);
     	//bind(HangmanDictionary.class).to(EnglishDictionaryDataSource.class);
     	bind(Language.class).to(Spanish.class);
     	bind(HangmanDictionary.class).to(SpanishDictionaryDataSource.class);
-    	
+    	bind(HangmanPanel.class).to(HangmanStickmanPanel.class);
     }
 
 }
